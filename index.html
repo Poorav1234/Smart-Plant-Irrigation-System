@@ -22,13 +22,14 @@
         // 3. Click the gear icon (Project Settings)
         // 4. Scroll down to "Your apps" and copy the config object
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",              // Found in project settings
-            authDomain: "smart-plant-irrigation-s-d17fd.firebaseapp.com",  // Usually projectId.firebaseapp.com
-            databaseURL: "https://smart-plant-irrigation-s-d17fd-default-rtdb.firebaseio.com",  // RTDB URL
-            projectId: "smart-plant-irrigation-s-d17fd",  // Your Firebase project ID
-            storageBucket: "smart-plant-irrigation-s-d17fd.appspot.com",  // Storage bucket
-            messagingSenderId: "YOUR_SENDER_ID",  // Messaging sender ID
-            appId: "YOUR_APP_ID"                 // App ID
+            apiKey: "AIzaSyDn7xX2f0kJvmHMjzU_i5WrUkQ4bAkuU_w",
+            authDomain: "smart-plant-irrigation-s-d17fd.firebaseapp.com",
+            databaseURL: "https://smart-plant-irrigation-s-d17fd-default-rtdb.firebaseio.com",
+            projectId: "smart-plant-irrigation-s-d17fd",
+            storageBucket: "smart-plant-irrigation-s-d17fd.firebasestorage.app",
+            messagingSenderId: "669962291376",
+            appId: "1:669962291376:web:453041a4d71f629d24d375",
+            measurementId: "G-NGZ074DQM4"
         };
         // ================================================
 
@@ -96,8 +97,6 @@
             statusCard.className = 'card';  // Reset classes
             if (data.status === 'Dry') {
                 statusCard.classList.add('dry');    // Reddish background for dry
-            } else if (data.status === 'Ideal') {
-                statusCard.classList.add('ideal');  // Greenish background for ideal
             } else if (data.status === 'Wet') {
                 statusCard.classList.add('wet');    // Bluish background for wet
             }
@@ -135,10 +134,11 @@
             // Toggle pump status
             const newPumpStatus = (currentPumpStatus === 'ON') ? 'OFF' : 'ON';
             
-            // Update pump status in Firebase
-            set(ref(database, 'soilData/pump'), newPumpStatus)
+            // Update manual pump override in Firebase
+            // The Arduino will read this and override automatic control
+            set(ref(database, 'soilData/manualPump'), newPumpStatus)
                 .then(() => {
-                    console.log('Pump status updated to:', newPumpStatus);
+                    console.log('Manual pump override set to:', newPumpStatus);
                     // Update button text based on new status
                     waterButton.textContent = (newPumpStatus === 'ON') ? 'Stop Watering' : 'Water Plant';
                     waterButton.classList.toggle('watering', newPumpStatus === 'ON');
