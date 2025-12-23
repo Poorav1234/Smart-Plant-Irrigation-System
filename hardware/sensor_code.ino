@@ -7,13 +7,9 @@
 #include <WiFiClient.h>
 #include <ArduinoJson.h>
 
-// WiFi credentials
-#define WIFI_SSID "Infinix HOT 30i"
-#define WIFI_PASSWORD "9824056360"
-
-// Firebase configuration
-#define FIREBASE_HOST "smart-plant-irrigation-s-d17fd-default-rtdb.firebaseio.com"
-#define FIREBASE_AUTH "27EjMEy7Jje4hb6bscPI228LiQHQbxpAScX1IMGJ"
+// Include configuration files
+#include "wifi_config.h"
+#include "firebase_config.h"
 
 // Pin definitions
 #define SOIL_PIN D5    // Digital soil moisture sensor pin

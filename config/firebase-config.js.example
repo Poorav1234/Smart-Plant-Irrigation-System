@@ -1,0 +1,48 @@
+/**
+ * Firebase Configuration Template (Web Dashboard)
+ * ==============================================
+ * 
+ * INSTRUCTIONS:
+ * 1. Copy this file as: web-dashboard/js/firebase-config.js
+ * 2. Get your Firebase config from Firebase Console:
+ *    - Go to https://console.firebase.google.com/
+ *    - Select your project
+ *    - Click Settings (gear icon) > Project Settings
+ *    - Scroll to "Your apps" section
+ *    - Click on your web app (create if needed)
+ *    - Copy the entire firebaseConfig object
+ * 3. Replace the placeholder object with your actual config
+ * 4. Save the file
+ * 
+ * NOTE: The file will be automatically excluded from git by .gitignore
+ */
+
+// Firebase Configuration Object
+// Replace all values with your actual Firebase project credentials
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID",
+    measurementId: "YOUR_MEASUREMENT_ID"
+};
+
+// Example:
+/*
+const firebaseConfig = {
+    apiKey: "AIzaSyDn7xX2f0kJvmHMjzU_i5WrUkQ4bAkuU_w",
+    authDomain: "smart-plant-irrigation-s-d17fd.firebaseapp.com",
+    databaseURL: "https://smart-plant-irrigation-s-d17fd-default-rtdb.firebaseio.com",
+    projectId: "smart-plant-irrigation-s-d17fd",
+    storageBucket: "smart-plant-irrigation-s-d17fd.firebasestorage.app",
+    messagingSenderId: "669962291376",
+    appId: "1:669962291376:web:453041a4d71f629d24d375",
+    measurementId: "G-NGZ074DQM4"
+};
+*/
+
+// Export the configuration for use in app.js
+export { firebaseConfig };

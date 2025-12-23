@@ -1,0 +1,54 @@
+# Credentials and Configuration Files
+# ====================================
+# NEVER commit sensitive credentials to version control
+
+# Arduino Configuration Files
+hardware/wifi_config.h
+hardware/firebase_config.h
+
+# Web Dashboard Configuration Files
+web-dashboard/js/firebase-config.js
+
+# IDE and Editor Files
+# =====================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Build and Dependency Files
+# ============================
+node_modules/
+dist/
+build/
+*.o
+*.exe
+
+# Arduino IDE Specific
+# ====================
+*.ino.cpp
+*.ino.elf
+*.ino.d
+*.ino.with_bootloader.bin
+.arduino/
+
+# Environment Files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# OS Specific
+.AppleDouble
+.LSOverride
+._*
+
+# Git
+.git/
+.gitattributes

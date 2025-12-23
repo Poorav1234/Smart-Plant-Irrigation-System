@@ -1,0 +1,30 @@
+/**
+ * Firebase Configuration Template (Arduino)
+ * =========================================
+ * 
+ * INSTRUCTIONS:
+ * 1. Copy this file as: hardware/firebase_config.h
+ * 2. Get credentials from Firebase Console:
+ *    - Go to https://console.firebase.google.com/
+ *    - Select your project
+ *    - Go to Settings (gear icon) > Database
+ *    - Copy the Realtime Database URL (without https:// and /.json)
+ *    - Get your Database Secret from Database Rules page
+ * 3. Replace placeholders with actual values
+ * 4. Save and upload to NodeMCU
+ * 
+ * NOTE: The file will be automatically excluded from git by .gitignore
+ */
+
+#ifndef FIREBASE_CONFIG_H
+#define FIREBASE_CONFIG_H
+
+// Firebase Realtime Database Configuration
+#define FIREBASE_HOST "YOUR_FIREBASE_HOST"         // e.g., smart-plant-s-d17fd-default-rtdb.firebaseio.com
+#define FIREBASE_AUTH "YOUR_FIREBASE_AUTH_TOKEN"   // Your Firebase Database Secret
+
+// Example:
+// #define FIREBASE_HOST "smart-plant-irrigation-s-d17fd-default-rtdb.firebaseio.com"
+// #define FIREBASE_AUTH "27EjMEy7Jje4hb6bscPI228LiQHQbxpAScX1IMGJ"
+
+#endif // FIREBASE_CONFIG_H

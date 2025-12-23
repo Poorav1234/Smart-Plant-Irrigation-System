@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Smart Plant Irrigation System</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>🌱 IoT Smart Plant Irrigation System</h1>
+            <p class="subtitle">Real-time monitoring and control of your plant's hydration</p>
+        </header>
+        
+        <!-- Main Dashboard Grid -->
+        <div class="dashboard">
+            <!-- Soil Moisture Card -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">💧</span>
+                    <h2 class="card-title">Soil Moisture</h2>
+                </div>
+                <div class="card-value" id="moisture">--</div>
+                <p class="card-label">Percentage</p>
+            </div>
+            
+            <!-- Soil Condition Card -->
+            <div class="card" id="status-card">
+                <div class="card-header">
+                    <span class="card-icon">🌿</span>
+                    <h2 class="card-title">Soil Condition</h2>
+                </div>
+                <div class="card-value" id="status">--</div>
+                <p class="card-label">Current State</p>
+            </div>
+            
+            <!-- Pump Status Card -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">⛲</span>
+                    <h2 class="card-title">Pump Status</h2>
+                </div>
+                <div class="card-value" id="pump">--</div>
+                <p class="card-label">Irrigation System</p>
+            </div>
+            
+            <!-- Last Updated Card -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">⏱️</span>
+                    <h2 class="card-title">Last Updated</h2>
+                </div>
+                <div class="card-value" id="timestamp">--</div>
+                <p class="card-label">Date & Time</p>
+            </div>
+        </div>
+        
+        <!-- Manual Watering Button -->
+        <div class="water-button-container">
+            <button class="water-button" id="water-button">Water Plant</button>
+        </div>
+        
+        <!-- Moisture Trend Chart -->
+        <div class="chart-container">
+            <h2 class="chart-header">Moisture Level Trend</h2>
+            <canvas id="moistureChart"></canvas>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <p>IoT Based Smart Plant Irrigation and Monitoring System | Real-time Data Visualization</p>
+        </footer>
+    </div>
+    
+    <!-- Application Script -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

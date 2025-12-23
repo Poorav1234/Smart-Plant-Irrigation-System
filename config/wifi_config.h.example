@@ -1,0 +1,25 @@
+/**
+ * WiFi Configuration Template
+ * ===========================
+ * 
+ * INSTRUCTIONS:
+ * 1. Copy this file as: hardware/wifi_config.h
+ * 2. Replace YOUR_WIFI_NAME with your WiFi SSID
+ * 3. Replace YOUR_WIFI_PASSWORD with your WiFi password
+ * 4. Save and upload to NodeMCU
+ * 
+ * NOTE: The file will be automatically excluded from git by .gitignore
+ */
+
+#ifndef WIFI_CONFIG_H
+#define WIFI_CONFIG_H
+
+// WiFi Network Credentials
+#define WIFI_SSID "YOUR_WIFI_NAME"              // Replace with your WiFi SSID
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"      // Replace with your WiFi password
+
+// Example:
+// #define WIFI_SSID "MyHomeWiFi"
+// #define WIFI_PASSWORD "MyPassword123"
+
+#endif // WIFI_CONFIG_H
