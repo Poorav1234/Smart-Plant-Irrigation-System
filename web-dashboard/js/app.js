@@ -10,7 +10,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebas
 import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
 import { firebaseConfig } from "./firebase-config.js";
 
-// Initialize Firebase
+// Initialize Firebase (ONLY ONCE)
 const app = initializeApp(firebaseConfig);
 
 // Get database reference
@@ -58,100 +58,81 @@ function initializeMoistureChart() {
 
 /**
  * Set up real-time listener for Firebase database changes
- * Updates UI whenever soil data changes
  */
 function setupRealtimeListener() {
     const soilDataRef = ref(database, 'soilData');
-    
+
     onValue(soilDataRef, (snapshot) => {
         const data = snapshot.val();
-        
-        if (data) {
-            // Update moisture display
-            moistureElement.textContent = data.moisture;
-            
-            // Update soil condition
-            statusElement.textContent = data.status;
-            
-            // Update pump status
-            pumpElement.textContent = data.pump;
-            
-            // Update timestamp
-            const date = new Date(data.timestamp * 1000);
-            timestampElement.textContent = date.toLocaleString();
-            
-            // Update status card color based on soil condition
-            statusCard.className = 'card';
-            if (data.status === 'Dry') {
-                statusCard.classList.add('dry');
-            } else if (data.status === 'Wet') {
-                statusCard.classList.add('wet');
-            }
-            
-            // Update water button based on pump status
-            if (data.pump === 'ON') {
-                waterButton.textContent = 'Stop Watering';
-                waterButton.classList.add('watering');
-            } else {
-                waterButton.textContent = 'Water Plant';
-                waterButton.classList.remove('watering');
-            }
-            
-            // Update chart
-            const now = new Date();
-            moistureChart.data.labels.push(now.toLocaleTimeString());
-            moistureChart.data.datasets[0].data.push(data.moisture);
-            
-            // Keep only last 10 data points
-            if (moistureChart.data.labels.length > 10) {
-                moistureChart.data.labels.shift();
-                moistureChart.data.datasets[0].data.shift();
-            }
-            
-            moistureChart.update();
+
+        if (!data) return;
+
+        moistureElement.textContent = data.moisture;
+        statusElement.textContent = data.status;
+        pumpElement.textContent = data.pump;
+
+        const date = new Date(data.timestamp * 1000);
+        timestampElement.textContent = date.toLocaleString();
+
+        statusCard.className = 'card';
+        if (data.status === 'Dry') statusCard.classList.add('dry');
+        if (data.status === 'Wet') statusCard.classList.add('wet');
+
+        if (data.pump === 'ON') {
+            waterButton.textContent = 'Stop Watering';
+            waterButton.classList.add('watering');
+        } else {
+            waterButton.textContent = 'Water Plant';
+            waterButton.classList.remove('watering');
         }
+
+        const now = new Date();
+        moistureChart.data.labels.push(now.toLocaleTimeString());
+        moistureChart.data.datasets[0].data.push(data.moisture);
+
+        if (moistureChart.data.labels.length > 10) {
+            moistureChart.data.labels.shift();
+            moistureChart.data.datasets[0].data.shift();
+        }
+
+        moistureChart.update();
     });
 }
 
 /**
  * Handle manual watering button click
- * Toggles pump status in Firebase
  */
 function setupWaterButtonListener() {
     waterButton.addEventListener('click', () => {
         const currentPumpStatus = pumpElement.textContent;
         const newPumpStatus = (currentPumpStatus === 'ON') ? 'OFF' : 'ON';
-        
+
         set(ref(database, 'soilData/manualPump'), newPumpStatus)
             .then(() => {
                 console.log('Manual pump override set to:', newPumpStatus);
-                waterButton.textContent = (newPumpStatus === 'ON') ? 'Stop Watering' : 'Water Plant';
-                waterButton.classList.toggle('watering', newPumpStatus === 'ON');
             })
             .catch((error) => {
                 console.error('Error updating pump status:', error);
-                alert('Failed to update pump status. Please check the console for details.');
             });
     });
 }
 
 /**
- * Initialize the application
- * Called when the page loads
+ * Initialize Dashboard (RENAMED — avoids Firebase conflict)
  */
-function initializeApp() {
+function initializeDashboard() {
     console.log('Initializing Smart Plant Irrigation System Dashboard...');
-    
+
     initializeMoistureChart();
     setupRealtimeListener();
     setupWaterButtonListener();
-    
+
     console.log('Dashboard initialized successfully!');
 }
 
-// Initialize the app when the DOM is ready
+// Run after DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeApp);
+    document.addEventListener('DOMContentLoaded', initializeDashboard);
 } else {
-    initializeApp();
+    initializeDashboard();
 }
